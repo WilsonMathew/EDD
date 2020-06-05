@@ -1,6 +1,7 @@
-#include "user.h";
 #include <iostream>;
 #include <string>;
+#include "user.h";
+#include "Asset.h";
 
 using namespace std;
 
@@ -22,6 +23,7 @@ int menu(string menuData[], int menuSize )
 		cout << "-> " << i << ". " << menuData[i] << "\n";
 	}
 	
+	cout << "---> Opcion: ";
 	cin >> opcion;
 
 	return opcion;
@@ -42,28 +44,43 @@ void loginMenu()
 	cin >> userData[2];
 	cout << "-> Ingresar Empresa: ";
 	cin >> userData[3];
-
-	test.setUser(userData);
-	cout << "Object data";
-
-	cout << "Company  " << test.getCompany();
-	cout << "Pass   " << test.getPassword();
 }
 
 int main()
 {
 	// Menu logged in user
-	string test[] = {"$$$USERNAME$$$",
+	string menuLoggedIn[] = 
+	{
+		"$$$USERNAME$$$",
 		"Agregar activo", 
 		"Eliminar activo",
 		"Modificar activo",
 		"Rentar activo",
 		"Activos rentados",
 		"Mis activos rentados",
-		"Cerrar sesion"};
-	loginMenu();
-	system("CLS");
-	int n = menu(test,arrayLen(test));
+		"Cerrar sesion"
+	};
+
+	string menuAdmin[] =
+	{
+		"Menu Administrador",
+		"Registrar usuario",
+		"Reporte matriz dispesa",
+		"Reporte activos disponibles de un departamento",
+		"Reporte activos disponibles de una empresa",
+		"Reporte transacciones",
+		"Reporte activos de un usuario",
+		"Reporte activos rentados por un usuario ",
+		"Ordenar transacciones"
+	};
+	
+
+	// Menu calls
+	/// Admins's menu
+	//menu(menuAdmin, arrayLen(menuAdmin));
+	//loginMenu();
+	//system("CLS");
+	//int n = menu(test,arrayLen(test));
 
 
 	return 0;
