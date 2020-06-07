@@ -140,10 +140,12 @@
   <ItemGroup>
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Transaction.cpp" />
     <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asset.h" />
+    <ClInclude Include="Transaction.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
