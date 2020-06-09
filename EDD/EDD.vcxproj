@@ -139,12 +139,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="DoublyList.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NodeDCList.cpp" />
     <ClCompile Include="Transaction.cpp" />
     <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asset.h" />
+    <ClInclude Include="DoublyList.h" />
+    <ClInclude Include="NodeDCList.h" />
     <ClInclude Include="Transaction.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
