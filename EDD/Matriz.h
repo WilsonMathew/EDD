@@ -11,10 +11,10 @@ public:
 
 	Matriz()
 	{
-		head = new NodoMatriz();
+		head = new NodoMatriz("admin","admin");
 	}
 
-	void insertElement(string user, int numero, string company, string dept);
+	void insertElement(string user, string password, string company, string dept);
 	NodoMatriz* createCompany(string company);
 	NodoMatriz* createDept(string dept);
 

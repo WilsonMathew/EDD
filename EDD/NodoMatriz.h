@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "user.h"
+
+
 using namespace std;
 
 class NodoMatriz
@@ -14,10 +15,10 @@ public:
 	NodoMatriz* in;
 	NodoMatriz* out;
 
-	string nombre;
-	int numero;
+	string name;
+	string password;
 
-	NodoMatriz(string _nombre, int _dato)
+	NodoMatriz(string _nombre, string _password)
 	{
 		next = nullptr;
 		prev = nullptr;
@@ -26,8 +27,8 @@ public:
 		in = nullptr;
 		out = nullptr;
 
-		nombre = _nombre;
-		numero = _dato;
+		name = _nombre;
+		password = _password;
 	}
 
 	NodoMatriz()

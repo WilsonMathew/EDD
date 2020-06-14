@@ -3,13 +3,13 @@
 
 
 
-void Matriz::insertElement(string user, int numero, string company, string dept)
+void Matriz::insertElement(string user, string password, string company, string dept)
 {
 	NodoMatriz* NodoUsr;
 	NodoMatriz* NodoCompany;
 	NodoMatriz* NodoDept;
 
-	NodoUsr = new NodoMatriz(user, numero);
+	NodoUsr = new NodoMatriz(user, password);
 
 	NodoDept = findDept(dept, head);
 	NodoCompany = findCompany(company, head);
@@ -59,7 +59,7 @@ void Matriz::insertElement(string user, int numero, string company, string dept)
 				}
 				while (auxEmp->up != nullptr)
 				{
-					if (auxEmp->nombre == company)
+					if (auxEmp->name == company)
 					{
 						NodoUsr->down = aux;
 						NodoUsr->up = aux->up;
@@ -129,7 +129,7 @@ void Matriz::insertElement(string user, int numero, string company, string dept)
 				}
 				while (auxDept->prev != nullptr)
 				{
-					if (auxDept->nombre == dept)
+					if (auxDept->name == dept)
 					{
 						NodoUsr->next = aux;
 						NodoUsr->prev = aux->prev;
@@ -155,7 +155,8 @@ void Matriz::insertElement(string user, int numero, string company, string dept)
 NodoMatriz* Matriz::createCompany(string empresa)
 {
 	NodoMatriz* emp;
-	emp = new NodoMatriz(empresa, -1);
+	// Check implications of changing data to string type
+	emp = new NodoMatriz(empresa, "");
 
 	NodoMatriz* aux = head;
 	while (aux->down != nullptr)
@@ -171,7 +172,7 @@ NodoMatriz* Matriz::createCompany(string empresa)
 NodoMatriz* Matriz::createDept(string _dept)
 {
 	NodoMatriz* dept;
-	dept = new NodoMatriz(_dept, -1);
+	dept = new NodoMatriz(_dept,"");
 
 	NodoMatriz* aux = head;
 	while (aux->next != nullptr)
@@ -192,7 +193,7 @@ NodoMatriz* Matriz::findCompany(string empresa, NodoMatriz* start)
 	NodoMatriz* aux = start;
 	while (aux != nullptr)
 	{
-		if (aux->nombre == empresa)
+		if (aux->name == empresa)
 			return aux;
 		aux = aux->down;
 	}
@@ -204,7 +205,7 @@ NodoMatriz* Matriz::findDept(string dept, NodoMatriz* start)
 	NodoMatriz* aux = start;
 	while (aux != nullptr)
 	{
-		if (aux->nombre == dept)
+		if (aux->name == dept)
 			return aux;
 		aux = aux->next;
 	}
@@ -222,7 +223,7 @@ bool Matriz::verifyCompany(string company, NodoMatriz* start, NodoMatriz* usr)
 		auxCom = auxCom->prev;
 	}
 
-	if (auxCom->nombre == company)
+	if (auxCom->name == company)
 	{
 		while (start->in != nullptr)
 		{
@@ -243,7 +244,7 @@ bool Matriz::verifyDept(string department, NodoMatriz* start, NodoMatriz* usr)
 		auxDept = auxDept->up;
 	}
 
-	if (auxDept->nombre == department)
+	if (auxDept->name == department)
 	{
 		while (start->in != nullptr)
 		{

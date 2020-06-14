@@ -5,6 +5,7 @@
 #include "Asset.h"
 #include "DoublyList.h"
 #include "Matriz.h"
+#include "AVL.h"
 
 using namespace std;
 
@@ -100,17 +101,69 @@ int main()
 	test.insertEnd(&start, two);
 	test.printList(start);
 	*/
-
+	/*
 	Matriz* miObjecto = new Matriz();
-	miObjecto->insertElement("Mynor", 1, "max", "Guatemala");
-	miObjecto->insertElement("susan", 2, "hp", "jutiapa");
-	miObjecto->insertElement("susel", 3, "hp", "jalapa");
-	miObjecto->insertElement("Roxana", 4, "walmart", "jalapa");
-	miObjecto->insertElement("Andrea", 5, "walmart", "jalapa");
-	miObjecto->insertElement("Sebas", 6, "walmart", "jalapa");
-	miObjecto->insertElement("Andres", 7, "hp", "Guatemala");
-	miObjecto->insertElement("Willy", 8, "max", "jalapa");
+	miObjecto->insertElement("Mynor", "1", "max", "Guatemala");
+	miObjecto->insertElement("susan", "2", "hp", "jutiapa");
+	miObjecto->insertElement("susel", "3", "hp", "jalapa");
+	miObjecto->insertElement("Roxana", "4", "walmart", "jalapa");
+	miObjecto->insertElement("Andrea", "5", "walmart", "jalapa");
+	miObjecto->insertElement("Sebas", "6", "walmart", "jalapa");
+	miObjecto->insertElement("Andres", "7", "hp", "Guatemala");
+	miObjecto->insertElement("Willy", "8", "max", "jalapa");
+
+	*/
+
+	// Test for AVL tree, so far BST implemented. need to balance stuff
+	
+	int treekeys[16] = { 50,76,21,4,32,64,15,52,14,100,83,2,3,70,87,80 };
+	AVL myTree;
+	int input = 0;
+
+	for (int i = 0; i < 16; i++)
+	{
+		myTree.addLeaf(treekeys[i]);
+	}
+
+	cout << "mostrar arbol en orden \n";
+	myTree.printInOrder();
+
+	myTree.printRootKey(myTree.returnRootKey());
+
+	cout << "the smalles value is: " << myTree.findSmallest() << "\n";
+	cout << "enter a value to delete or -1 to stop \n";
+	while (input != -1)
+	{
+		cout << "Delete Node: ";
+		cin >> input;
+		if (input != -1)
+		{
+			cout << endl;
+			myTree.removeNode(input);
+			myTree.printInOrder();
+			cout << endl;
+		}
+	}
 
 
-	//return 0;
+	// testing strings
+	/*
+	string one = "hello5";
+	string two = "hello10";
+
+
+	if (one.compare(two) == 0)
+	{
+		cout << "they are equal";
+	}
+	else if (one.compare(two) < 0)
+	{
+		cout << one << " less than " << two << endl;
+	}
+	else if (one.compare(two) > 0)
+	{
+		cout << one << " greater than " << two << endl;
+	}
+	*/
+	return 0;
 }
