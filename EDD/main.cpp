@@ -1,9 +1,10 @@
-#include <iostream>;
-#include <string>;
+#include <iostream>
+#include <string>
 #include <time.h>
-#include "user.h";
-#include "Asset.h";
+#include "user.h"
+#include "Asset.h"
 #include "DoublyList.h"
+#include "Matriz.h"
 
 using namespace std;
 
@@ -83,6 +84,9 @@ int main()
 	//loginMenu();
 	//system("CLS");
 	//int n = menu(test,arrayLen(test));
+	
+	// Lista doblemente enlazada de transacciones
+	/*
 	Transaction one;
 	Transaction two;
 
@@ -94,7 +98,14 @@ int main()
 
 	test.insertEnd(&start, one);
 	test.insertEnd(&start, two);
-	//test.printList(start);
+	test.printList(start);
+	*/
+
+	Matriz* miObjecto = new Matriz();
+	miObjecto->insertElement("wilson", 1, "max", "Guatemala");
+	miObjecto->insertElement("luke", 1, "hp", "jutiapa");
+	miObjecto->insertElement("Tom", 1, "hp", "jalapa");
+	miObjecto->insertElement("jsdklfj", 1, "walmart", "jalapa");
 
 	return 0;
 }

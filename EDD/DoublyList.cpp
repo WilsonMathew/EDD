@@ -15,25 +15,25 @@ void DoublyList::printList(NodeDCList* start)
 	std::cout << temp->data.getTransactionId();
 }
 
-void DoublyList::insertEnd(NodeDCList* start, Transaction value)
+void DoublyList::insertEnd(NodeDCList** start, Transaction value)
 {
 	// If list is empty
-	if (start == NULL)
+	if (*start == NULL)
 	{
 		NodeDCList* newNode = new NodeDCList(value);
 		newNode->data = value;
 		newNode->next = newNode->prev = newNode;
-		start = newNode;
+		*start = newNode;
 		return;
 	}
 
 	//If list is not empty
-	NodeDCList* last = start->prev;
+	NodeDCList* last = (*start)->prev;
 	
 	NodeDCList* newNode = new NodeDCList(value);
 	newNode->data = value;
-	newNode->next = start;
-	start->prev = newNode;
+	newNode->next = *start;
+	(*start)->prev = newNode;
 	newNode->prev = last;
 	last->next = newNode;
 }
