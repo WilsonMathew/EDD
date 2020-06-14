@@ -152,7 +152,6 @@ void Matriz::insertElement(string user, int numero, string company, string dept)
 	}
 }
 //----------------------------
-
 NodoMatriz* Matriz::createCompany(string empresa)
 {
 	NodoMatriz* emp;
@@ -169,7 +168,6 @@ NodoMatriz* Matriz::createCompany(string empresa)
 
 	return emp;
 }
-
 NodoMatriz* Matriz::createDept(string _dept)
 {
 	NodoMatriz* dept;
@@ -186,7 +184,6 @@ NodoMatriz* Matriz::createDept(string _dept)
 
 	return dept;
 }
-
 
 //--------------
 
@@ -215,7 +212,6 @@ NodoMatriz* Matriz::findDept(string dept, NodoMatriz* start)
 	return nullptr;
 }
 
-
 //---------------------------------------------------------
 bool Matriz::verifyCompany(string company, NodoMatriz* start, NodoMatriz* usr)
 {
@@ -238,7 +234,6 @@ bool Matriz::verifyCompany(string company, NodoMatriz* start, NodoMatriz* usr)
 	}
 	return false;
 }
-
 bool Matriz::verifyDept(string department, NodoMatriz* start, NodoMatriz* usr)
 {
 	NodoMatriz* auxDept = start->up;

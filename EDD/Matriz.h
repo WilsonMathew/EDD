@@ -11,7 +11,7 @@ public:
 
 	Matriz()
 	{
-		head = new NodoMatriz("Adming", -1);
+		head = new NodoMatriz();
 	}
 
 	void insertElement(string user, int numero, string company, string dept);
@@ -23,6 +23,5 @@ public:
 
 	bool verifyCompany(string company, NodoMatriz* start, NodoMatriz* usr);
 	bool verifyDept(string dept, NodoMatriz* start, NodoMatriz* usr);
-
 };
 
