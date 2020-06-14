@@ -66,6 +66,7 @@ void Matriz::insertElement(string user, int numero, string company, string dept)
 
 						aux->up->down = NodoUsr;
 						aux->up = NodoUsr;
+						break;
 					}
 					auxEmp = auxEmp->up;
 				}
@@ -79,6 +80,13 @@ void Matriz::insertElement(string user, int numero, string company, string dept)
 			aux->down = NodoUsr;
 			NodoUsr->up = aux;
 		}
+	}
+
+
+	// if insertes user break out of the function
+	if (NodoUsr->out != nullptr)
+	{
+		return;
 	}
 
 
@@ -107,7 +115,40 @@ void Matriz::insertElement(string user, int numero, string company, string dept)
 	}
 	else
 	{
+		NodoMatriz* aux = NodoCompany;
+		NodoMatriz* auxDept;
+		do
+		{
+			aux = aux->next;
+			if (!verifyDept(dept, aux, NodoUsr))
+			{
+				auxDept = aux->up;
+				while (auxDept->up != nullptr)
+				{
+					auxDept = auxDept->up;
+				}
+				while (auxDept->prev != nullptr)
+				{
+					if (auxDept->nombre == dept)
+					{
+						NodoUsr->next = aux;
+						NodoUsr->prev = aux->prev;
 
+						aux->prev->next = NodoUsr;
+						aux->prev = NodoUsr;
+						break;
+					}
+					auxDept = auxDept->prev;
+				}
+			}
+
+		} while (aux->next != nullptr && NodoUsr->prev == nullptr);
+
+		if (NodoUsr->prev == nullptr && NodoUsr->out == nullptr)
+		{
+			aux->next = NodoUsr;
+			NodoUsr->prev = aux;
+		}
 	}
 }
 //----------------------------

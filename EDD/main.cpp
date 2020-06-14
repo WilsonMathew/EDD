@@ -102,10 +102,15 @@ int main()
 	*/
 
 	Matriz* miObjecto = new Matriz();
-	miObjecto->insertElement("wilson", 1, "max", "Guatemala");
-	miObjecto->insertElement("luke", 1, "hp", "jutiapa");
-	miObjecto->insertElement("Tom", 1, "hp", "jalapa");
-	miObjecto->insertElement("jsdklfj", 1, "walmart", "jalapa");
+	miObjecto->insertElement("Mynor", 1, "max", "Guatemala");
+	miObjecto->insertElement("susan", 2, "hp", "jutiapa");
+	miObjecto->insertElement("susel", 3, "hp", "jalapa");
+	miObjecto->insertElement("Roxana", 4, "walmart", "jalapa");
+	miObjecto->insertElement("Andrea", 5, "walmart", "jalapa");
+	miObjecto->insertElement("Sebas", 6, "walmart", "jalapa");
+	miObjecto->insertElement("Andres", 7, "hp", "Guatemala");
+	miObjecto->insertElement("Willy", 8, "max", "jalapa");
 
-	return 0;
+
+	//return 0;
 }
