@@ -1,10 +1,16 @@
 #pragma once
+#include <iostream>
+#include <string>
+
 class AVL
 {
 private:
 	struct node
 	{
 		int key;
+		//string alphaKey;
+		//string nombre;
+		//string desc;
 		node* left;
 		node* right;
 	};

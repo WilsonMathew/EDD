@@ -33,7 +33,7 @@ int menu(string menuData[], int menuSize )
 }
 
 // Login Menu using user test
-void loginMenu()
+string* loginMenu()
 {
 	user test;
 	string userData[4];
@@ -47,11 +47,16 @@ void loginMenu()
 	cin >> userData[2];
 	cout << "-> Ingresar Empresa: ";
 	cin >> userData[3];
-}
 
+	return userData;
+}
+//dffds
 
 int main()
 {
+	// EDD Vars
+	Matriz* user = new Matriz();
+	
 	// Menu logged in user
 	string menuLoggedIn[] = 
 	{
@@ -79,11 +84,14 @@ int main()
 	};
 	
 
-	// Menu calls
+	//Menu calls
 	/// Admins's menu
+	
+	string* loginData = loginMenu();
+
+	cout << loginData[0];
 	//menu(menuAdmin, arrayLen(menuAdmin));
-	//loginMenu();
-	//system("CLS");
+	system("CLS");
 	//int n = menu(test,arrayLen(test));
 	
 	// Lista doblemente enlazada de transacciones
