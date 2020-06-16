@@ -213,6 +213,61 @@ NodoMatriz* Matriz::findDept(string dept, NodoMatriz* start)
 	return nullptr;
 }
 
+string Matriz::getUserData(string name, string pasword, string company, string dept)
+{
+	// Verifies if company exists in dept.
+	NodoMatriz* data = verifyCompInDept(company, dept);
+	
+	if (data != nullptr)
+	{
+		while (data != nullptr)
+		{
+			if (data->name == name && data->password == pasword)
+			{
+				return data->name;
+			}
+			else
+			{
+				return "0";
+			}
+			//cout << "Nombre: " << data->name << endl;
+			data = data->in;
+		}
+		
+	}
+	return "0";
+}
+
+NodoMatriz* Matriz::verifyCompInDept(string company, string dept)
+{
+
+	NodoMatriz* auxLeft = findCompany(company, head);
+	NodoMatriz* auxUp;
+	// Si existe la compania
+	if (auxLeft != nullptr)
+	{
+		while (auxLeft->next != nullptr)
+		{
+			//cout << auxLeft->next->name << endl;
+			auxLeft = auxLeft->next;
+			auxUp = auxLeft;
+
+			// ir al nodo dept
+			while (auxUp->up != nullptr)
+				auxUp = auxUp->up;
+			
+			// verificar si una empres tiene sucursal en x dept
+			if (auxUp->name == dept)
+				return auxLeft;
+
+			//cout << auxUp->name << endl;
+		}
+	}
+
+	return 0;
+}
+
+
 //---------------------------------------------------------
 bool Matriz::verifyCompany(string company, NodoMatriz* start, NodoMatriz* usr)
 {
@@ -226,9 +281,8 @@ bool Matriz::verifyCompany(string company, NodoMatriz* start, NodoMatriz* usr)
 	if (auxCom->name == company)
 	{
 		while (start->in != nullptr)
-		{
 			start = start->in;
-		}
+
 		start->in = usr;
 		usr->out = start;
 		return true;

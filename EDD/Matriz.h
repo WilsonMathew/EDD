@@ -23,5 +23,8 @@ public:
 
 	bool verifyCompany(string company, NodoMatriz* start, NodoMatriz* usr);
 	bool verifyDept(string dept, NodoMatriz* start, NodoMatriz* usr);
-};
 
+	NodoMatriz* verifyCompInDept(string company, string dept);
+
+	string getUserData(string name, string pasword, string company, string dept);
+};

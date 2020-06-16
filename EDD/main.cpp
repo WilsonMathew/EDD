@@ -13,6 +13,10 @@ using namespace std;
 // example of using it: arraylen(takes name of array)
 #define arrayLen(ar) (sizeof(ar)/sizeof(ar[0])) 
 
+// Variable global
+Matriz* user = new Matriz();
+
+
 // Menus to select one option
 int menu(string menuData[], int menuSize ) 
 {
@@ -33,35 +37,13 @@ int menu(string menuData[], int menuSize )
 }
 
 // Login Menu using user test
-string* loginMenu()
+void loginMenu()
 {
-	user test;
-	string userData[4];
-	cout << "********** " << "Wilson Laynez" << " **********\n";
-	cout << "*          " << "    Login    " << "          *\n";
-	cout << "-> Ingresar usuario: ";
-	cin >> userData[0];
-	cout << "-> Ingresar contraseña: ";
-	cin >> userData[1];
-	cout << "-> Ingresar departamento:";
-	cin >> userData[2];
-	cout << "-> Ingresar Empresa: ";
-	cin >> userData[3];
 
-	return userData;
-}
-//dffdsdfdfsdf
-
-int main()
-{
-	// EDD Vars
-	Matriz* user = new Matriz();
-	
-	// Menu logged in user
-	string menuLoggedIn[] = 
+	string menuLoggedIn[] =
 	{
 		"$$$USERNAME$$$",
-		"Agregar activo", 
+		"Agregar activo",
 		"Eliminar activo",
 		"Modificar activo",
 		"Rentar activo",
@@ -82,16 +64,60 @@ int main()
 		"Reporte activos rentados por un usuario ",
 		"Ordenar transacciones"
 	};
+
+	string userData[4];
+
+	cout << "********** " << "Wilson Laynez" << " **********\n";
+	cout << "*          " << "    Login    " << "          *\n";
+	cout << "-> Ingresar usuario: ";
+	cin >> userData[0];
+	cout << "-> Ingresar contraseña: ";
+	cin >> userData[1];
+	cout << "-> Ingresar departamento:";
+	cin >> userData[2];
+	cout << "-> Ingresar Empresa: ";
+	cin >> userData[3];
+
+	if (userData[0] == "admin" && userData[1] == "admin")
+	{
+		menu(menuAdmin, arrayLen(menuAdmin));
+		//system("CLS");
+	}
+	else
+	{
+		
+		if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != "0")
+		{
+			menuLoggedIn[0] = userData[0];
+			menu(menuLoggedIn, arrayLen(menuLoggedIn));
+		}
+		else
+		{
+			cout << " No existe usuario";
+		}
+		
+
+	}
+
+	// Validar si existe.
+
+
+}
+
+int main()
+{
+	// EDD Vars
 	
+	
+	// Menu logged in user
+	
+	
+	//loginMenu();
 
 	//Menu calls
 	/// Admins's menu
-	
-	string* loginData = loginMenu();
 
-	cout << loginData[0];
 	//menu(menuAdmin, arrayLen(menuAdmin));
-	system("CLS");
 	//int n = menu(test,arrayLen(test));
 	
 	// Lista doblemente enlazada de transacciones
@@ -114,16 +140,16 @@ int main()
 	miObjecto->insertElement("Mynor", "1", "max", "Guatemala");
 	miObjecto->insertElement("susan", "2", "hp", "jutiapa");
 	miObjecto->insertElement("susel", "3", "hp", "jalapa");
-	miObjecto->insertElement("Roxana", "4", "walmart", "jalapa");
+	miObjecto->insertElement("Roxana", "4", "walmart", "Guatemala");
 	miObjecto->insertElement("Andrea", "5", "walmart", "jalapa");
 	miObjecto->insertElement("Sebas", "6", "walmart", "jalapa");
 	miObjecto->insertElement("Andres", "7", "hp", "Guatemala");
 	miObjecto->insertElement("Willy", "8", "max", "jalapa");
 
+	miObjecto->getUserData("Roxana", "4", "walmart", "jalapa");
 	*/
-
 	// Test for AVL tree, so far BST implemented. need to balance stuff
-	
+	/**
 	int treekeys[16] = { 50,76,21,4,32,64,15,52,14,100,83,2,3,70,87,80 };
 	AVL myTree;
 	int input = 0;
@@ -152,7 +178,7 @@ int main()
 			cout << endl;
 		}
 	}
-
+	*/
 
 	// testing strings
 	/*
