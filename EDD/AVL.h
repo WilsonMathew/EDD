@@ -2,15 +2,17 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 class AVL
 {
 private:
 	struct node
 	{
 		int key;
-		//string alphaKey;
-		//string nombre;
-		//string desc;
+		string alphaKey;
+		string nombre;
+		string desc;
 		node* left;
 		node* right;
 	};

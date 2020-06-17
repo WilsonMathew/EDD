@@ -16,6 +16,38 @@ using namespace std;
 // Variable global
 Matriz* user = new Matriz();
 
+// metodo para ingresar un usuario a la matriz
+void insertUser()
+{
+
+	string userData[4] = {"","","",""};
+
+	cout << "********** " << "Wilson Laynez" << " **********\n";
+	cout << "*          " << "    Registrar Usuario    " << "          *\n";
+	cout << "-> Ingresar usuario: ";
+	cin >> userData[0];
+	cout << "-> Ingresar contraseña: ";
+	cin >> userData[1];
+	cout << "-> Ingresar departamento:";
+	cin >> userData[2];
+	cout << "-> Ingresar Empresa: ";
+	cin >> userData[3];
+
+	user->insertElement(userData[0], userData[1], userData[2], userData[3]);
+	cout << "-> Usuario ingresado! \n";
+	// test users
+
+	/*
+	user->insertElement("Mynor", "1", "max", "Guatemala");
+	user->insertElement("susan", "2", "hp", "jutiapa");
+	user->insertElement("susel", "3", "hp", "jalapa");
+	user->insertElement("Roxana", "4", "walmart", "Guatemala");
+	user->insertElement("Andrea", "5", "walmart", "jalapa");
+	user->insertElement("Sebas", "6", "walmart", "jalapa");
+	user->insertElement("Andres", "7", "hp", "Guatemala");
+	user->insertElement("Willy", "8", "max", "jalapa");
+	*/
+}
 
 // Menus to select one option
 int menu(string menuData[], int menuSize ) 
@@ -67,45 +99,84 @@ void loginMenu()
 
 	string userData[4];
 
-	cout << "********** " << "Wilson Laynez" << " **********\n";
-	cout << "*          " << "    Login    " << "          *\n";
-	cout << "-> Ingresar usuario: ";
-	cin >> userData[0];
-	cout << "-> Ingresar contraseña: ";
-	cin >> userData[1];
-	cout << "-> Ingresar departamento:";
-	cin >> userData[2];
-	cout << "-> Ingresar Empresa: ";
-	cin >> userData[3];
+	// Welcome screen
 
-	if (userData[0] == "admin" && userData[1] == "admin")
+	cout << "******** PROYECTO 1 ********** \n";
+	cout << "********   EDD 1    ********** \n";
+	cout << "******** 201602755  ********** \n";
+	cin.ignore();
+
+	system("CLS");
+
+	do
 	{
-		menu(menuAdmin, arrayLen(menuAdmin));
-		//system("CLS");
-	}
-	else
-	{
-		
-		if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != "0")
+		cout << "********** " << "Wilson Laynez" << " **********\n";
+		cout << "*          " << "    Login    " << "          *\n";
+		cout << "-> Ingresar usuario: ";
+		cin >> userData[0];
+		cout << "-> Ingresar contraseña: ";
+		cin >> userData[1];
+		cout << "-> Ingresar departamento:";
+		cin >> userData[2];
+		cout << "-> Ingresar Empresa: ";
+		cin >> userData[3];
+
+		if (userData[0] == "admin" && userData[1] == "admin")
 		{
-			menuLoggedIn[0] = userData[0];
-			menu(menuLoggedIn, arrayLen(menuLoggedIn));
+			int opt;
+			do
+			{
+				system("CLS");
+				opt = menu(menuAdmin, arrayLen(menuAdmin));
+				switch (opt)
+				{
+					case 1:
+						system("CLS");
+						insertUser();
+						cin.ignore();
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					case 4:
+						break;
+					case 5:
+						break;
+					case 6:
+						break;
+					case 7:
+						break;
+					case 8:
+						break;
+					default:
+						cout << "Admin logged out! \n";
+						cin.ignore();
+						break;
+				}
+			} while (opt != 0);
 		}
 		else
 		{
-			cout << " No existe usuario";
-		}
 		
-
-	}
-
-	// Validar si existe.
-
-
+			if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != "0")
+			{
+				menuLoggedIn[0] = userData[0];
+				menu(menuLoggedIn, arrayLen(menuLoggedIn));
+			}
+			else
+			{
+				cout << " No existe usuario \n";
+			}
+		}
+	} while (true);
 }
+
+
 
 int main()
 {
+		
 	// EDD Vars
 	
 	
@@ -135,24 +206,20 @@ int main()
 	test.insertEnd(&start, two);
 	test.printList(start);
 	*/
+	
+	
+	loginMenu();
 	/*
-	Matriz* miObjecto = new Matriz();
-	miObjecto->insertElement("Mynor", "1", "max", "Guatemala");
-	miObjecto->insertElement("susan", "2", "hp", "jutiapa");
-	miObjecto->insertElement("susel", "3", "hp", "jalapa");
-	miObjecto->insertElement("Roxana", "4", "walmart", "Guatemala");
-	miObjecto->insertElement("Andrea", "5", "walmart", "jalapa");
-	miObjecto->insertElement("Sebas", "6", "walmart", "jalapa");
-	miObjecto->insertElement("Andres", "7", "hp", "Guatemala");
-	miObjecto->insertElement("Willy", "8", "max", "jalapa");
 
-	miObjecto->getUserData("Roxana", "4", "walmart", "jalapa");
 	*/
+	
 	// Test for AVL tree, so far BST implemented. need to balance stuff
-	/**
-	int treekeys[16] = { 50,76,21,4,32,64,15,52,14,100,83,2,3,70,87,80 };
+	
+	//string treekeys[16] = { "50","76","21","4","32","64","15","52","14","100","83","2","3","70","87","80" };
+
+	/*
+	int treekeys[16] = { 50,76,21,4,32,64,15,52,14,100,83,2,3,70,87,80};
 	AVL myTree;
-	int input = 0;
 
 	for (int i = 0; i < 16; i++)
 	{
@@ -162,24 +229,9 @@ int main()
 	cout << "mostrar arbol en orden \n";
 	myTree.printInOrder();
 
-	myTree.printRootKey(myTree.returnRootKey());
-
-	cout << "the smalles value is: " << myTree.findSmallest() << "\n";
-	cout << "enter a value to delete or -1 to stop \n";
-	while (input != -1)
-	{
-		cout << "Delete Node: ";
-		cin >> input;
-		if (input != -1)
-		{
-			cout << endl;
-			myTree.removeNode(input);
-			myTree.printInOrder();
-			cout << endl;
-		}
-	}
+	//myTree.printRootKey(myTree.returnRootKey());
+	
 	*/
-
 	// testing strings
 	/*
 	string one = "hello5";

@@ -14,10 +14,6 @@ void Transaction::setTransactionAsset(Asset _tAsset)
 {
 	transAsset = _tAsset;
 }
-void Transaction::setTransactionUser(user _tUser)
-{
-	transUser = _tUser;
-}
 void Transaction::setTransactionDate(string _tDate)
 {
 	transDate = _tDate;
@@ -34,10 +30,6 @@ string Transaction::getTransactionId()
 Asset Transaction::getTransactionAsset()
 {
 	return transAsset;
-}
-user Transaction::getTransactionUser()
-{
-	return transUser;
 }
 string Transaction::getTransactionDate()
 {
