@@ -1,7 +1,8 @@
+#define _CRT_SECURE_NO_DEPRECATE
 #include "Matriz.h"
 #include "NodoMatriz.h"
 
-
+using namespace std;
 
 void Matriz::insertElement(string user, string password, string company, string dept)
 {
@@ -212,7 +213,6 @@ NodoMatriz* Matriz::findDept(string dept, NodoMatriz* start)
 
 	return nullptr;
 }
-
 string Matriz::getUserData(string name, string pasword, string company, string dept)
 {
 	// Verifies if company exists in dept.
@@ -237,7 +237,6 @@ string Matriz::getUserData(string name, string pasword, string company, string d
 	}
 	return "0";
 }
-
 NodoMatriz* Matriz::verifyCompInDept(string company, string dept)
 {
 
@@ -269,6 +268,7 @@ NodoMatriz* Matriz::verifyCompInDept(string company, string dept)
 
 
 //---------------------------------------------------------
+
 bool Matriz::verifyCompany(string company, NodoMatriz* start, NodoMatriz* usr)
 {
 	NodoMatriz* auxCom = start->prev;
@@ -310,4 +310,28 @@ bool Matriz::verifyDept(string department, NodoMatriz* start, NodoMatriz* usr)
 	}
 
 	return false;
+}
+
+void Matriz::graph()
+{
+	FILE* file;
+	file = fopen("grafo.dot", "w+");
+
+	fprintf(file, "digraph G { \n");
+	//getDot(file, head);
+	fprintf(file, "A -> B {label=\"10\"};");
+	fprintf(file, "B -> B {label=\"20\"};");
+	fprintf(file, "}");
+
+	fclose(file);
+
+	system("dot -Tpng grafo.dot -o Matriz.png");
+	system(".\Matriz.png");
+
+
+}
+
+void getDot(FILE* file, NodoMatriz* head)
+{
+
 }

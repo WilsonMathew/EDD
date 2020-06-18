@@ -27,4 +27,8 @@ public:
 	NodoMatriz* verifyCompInDept(string company, string dept);
 
 	string getUserData(string name, string pasword, string company, string dept);
+
+	// Graphing stuff
+	void graph();
+	void getDot(FILE* file, NodoMatriz* head );
 };

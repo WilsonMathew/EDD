@@ -107,7 +107,8 @@ void loginMenu()
 	cin.ignore();
 
 	system("CLS");
-
+	// var to manage options
+	int opt;
 	do
 	{
 		cout << "********** " << "Wilson Laynez" << " **********\n";
@@ -123,7 +124,7 @@ void loginMenu()
 
 		if (userData[0] == "admin" && userData[1] == "admin")
 		{
-			int opt;
+
 			do
 			{
 				system("CLS");
@@ -161,8 +162,38 @@ void loginMenu()
 		
 			if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != "0")
 			{
-				menuLoggedIn[0] = userData[0];
-				menu(menuLoggedIn, arrayLen(menuLoggedIn));
+				
+
+				do
+				{
+					system("CLS");
+					menuLoggedIn[0] = userData[0];
+					opt = menu(menuLoggedIn, arrayLen(menuLoggedIn));
+
+					switch (opt)
+					{
+					case 1:
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					case 4:
+						break;
+					case 5:
+						break;
+					case 6:
+						break;
+					case 7:
+						break;
+					case 8:
+						break;
+					default:
+						cout << userData[0] << " logged out! Bye \n";
+						cin.ignore();
+						break;
+					}
+				} while (opt != 0);
 			}
 			else
 			{
@@ -176,7 +207,8 @@ void loginMenu()
 
 int main()
 {
-		
+	
+	user->graph();
 	// EDD Vars
 	
 	
