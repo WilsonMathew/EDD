@@ -8,11 +8,13 @@ AVL::AVL()
 {
 	root = NULL;
 }
-
-AVL::node* AVL::createLeaf(int key)
+AVL::node* AVL::createLeaf(int key,string alphaKey,string nombre,string desc)
 {
 	node* n = new node;
 	n->key = key;
+	n->alphaKey = alphaKey;
+	n->nombre = nombre;
+	n->desc = desc;
 	n->height = 1;
 	n->left = NULL;
 	n->right = NULL;
@@ -20,9 +22,9 @@ AVL::node* AVL::createLeaf(int key)
 	return n;
 }
 
-void AVL::addLeaf(int key)
+void AVL::addLeaf(int key, string alphaKey, string nombre, string desc)
 {
-	root = addLeafPrivate(root, key);
+	root = addLeafPrivate(root, key,alphaKey, nombre, desc);
 }
 
 // balanced failure
@@ -53,7 +55,7 @@ AVL::node* AVL::balanceTree(int key, node* root)
 	return root;
 }
 
-AVL::node* AVL::addLeafPrivate(node* node, int key)
+AVL::node* AVL::addLeafPrivate(node* node, int key, string alphaKey, string nombre, string desc)
 {
 	// Addding without balance
 	/*
@@ -92,12 +94,12 @@ AVL::node* AVL::addLeafPrivate(node* node, int key)
 	// adding with balance
 	 // Agregando nodos como arbo de busqueda normal
 	if (node == NULL)
-		return(createLeaf(key));
+		return(createLeaf(key,alphaKey, nombre, desc));
 
 	if (key < node->key)
-		node->left = addLeafPrivate(node->left, key);
+		node->left = addLeafPrivate(node->left, key,alphaKey, nombre, desc);
 	else if (key > node->key)
-		node->right = addLeafPrivate(node->right, key);
+		node->right = addLeafPrivate(node->right, key, alphaKey, nombre, desc);
 	else // no se aceptan duplicados
 		return node;
 
@@ -168,7 +170,7 @@ void AVL::printPreOrderPrivate(node* ptr)
 {
 	if (ptr != NULL)
 	{
-		cout << ptr->key << " ";
+		cout << ptr->key << " " << ptr->nombre << ", ";
 		printPreOrderPrivate(ptr->left);
 		printPreOrderPrivate(ptr->right);
 	}

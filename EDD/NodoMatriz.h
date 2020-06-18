@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "AVL.h"
 
 
 using namespace std;
@@ -14,9 +15,9 @@ public:
 	NodoMatriz* down;
 	NodoMatriz* in;
 	NodoMatriz* out;
-
 	string name;
 	string password;
+	AVL* asset;
 
 	NodoMatriz(string _nombre, string _password)
 	{
@@ -26,7 +27,8 @@ public:
 		down = nullptr;
 		in = nullptr;
 		out = nullptr;
-
+		asset = new AVL();
+		
 		name = _nombre;
 		password = _password;
 	}

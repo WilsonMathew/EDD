@@ -1,8 +1,17 @@
 #define _CRT_SECURE_NO_DEPRECATE
 #include "Matriz.h"
 #include "NodoMatriz.h"
+#include "AVL.h"
+#include <time.h>
 
 using namespace std;
+
+void Matriz::insertAsset(string name, string password, string company, string dept, string nameAsset, string descAsset)
+{
+	NodoMatriz* data = getUserData(name, password, company, dept);
+	srand(time(NULL));
+	data->asset->addLeaf(rand(),"a",nameAsset,descAsset);
+}
 
 void Matriz::insertElement(string user, string password, string company, string dept)
 {
@@ -213,29 +222,29 @@ NodoMatriz* Matriz::findDept(string dept, NodoMatriz* start)
 
 	return nullptr;
 }
-string Matriz::getUserData(string name, string pasword, string company, string dept)
+NodoMatriz* Matriz::getUserData(string name, string pasword, string company, string dept)
 {
 	// Verifies if company exists in dept.
 	NodoMatriz* data = verifyCompInDept(company, dept);
 	
 	if (data != nullptr)
 	{
-		while (data != nullptr)
+		do
 		{
 			if (data->name == name && data->password == pasword)
 			{
-				return data->name;
+				return data;
 			}
 			else
 			{
-				return "0";
+				return NULL;
 			}
 			//cout << "Nombre: " << data->name << endl;
 			data = data->in;
-		}
+		} while (data->in != nullptr);
 		
 	}
-	return "0";
+	return NULL;
 }
 NodoMatriz* Matriz::verifyCompInDept(string company, string dept)
 {

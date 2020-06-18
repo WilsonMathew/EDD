@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <time.h>
+#include <cstdlib>
 #include "user.h"
 #include "Asset.h"
 #include "DoublyList.h"
@@ -33,7 +34,7 @@ void insertUser()
 	cout << "-> Ingresar Empresa: ";
 	cin >> userData[3];
 
-	if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != "0")
+	if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != NULL)
 		cout << "$$$ No se adminten duplicados! intente con un nombre diferente $$$\n\n";
 	else
 	{
@@ -74,10 +75,24 @@ int menu(string menuData[], int menuSize )
 	return opcion;
 }
 
+
+void addAsset(string name, string password, string company, string dept) 
+{
+	string userData[6] = { "","","","","","" };
+
+	cout << "********** " << "Wilson Laynez" << " **********\n";
+	cout << "*          " << "    Registrar Activo    " << "          *\n";
+	cout << "-> Ingresar nombre activo: ";
+	cin >> userData[0];
+	cout << "-> Ingresar descripcion activo: ";
+	cin >> userData[1];
+	user->insertAsset(name, password, company, dept, userData[0], userData[1]);
+	cout << "$$$ Se ingreso activo correctamente $$$ \n";
+}
+
 // Login Menu using user test
 void loginMenu()
 {
-
 	string menuLoggedIn[] =
 	{
 		"$$$USERNAME$$$",
@@ -111,8 +126,8 @@ void loginMenu()
 	cout << "********   EDD 1    ********** \n";
 	cout << "******** 201602755  ********** \n";
 	cin.ignore();
-
 	system("CLS");
+
 	// var to manage options
 	int opt;
 	do
@@ -128,9 +143,9 @@ void loginMenu()
 		cout << "-> Ingresar Empresa: ";
 		cin >> userData[3];
 
+		// Meno del administrador
 		if (userData[0] == "admin" && userData[1] == "admin")
 		{
-
 			do
 			{
 				//system("CLS");
@@ -164,12 +179,10 @@ void loginMenu()
 			} while (opt != 0);
 		}
 		else
+			// Menu de un usuario loggeado
 		{
-		
-			if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != "0")
+			if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != NULL)
 			{
-				
-
 				do
 				{
 					system("CLS");
@@ -179,6 +192,7 @@ void loginMenu()
 					switch (opt)
 					{
 					case 1:
+						addAsset(userData[0], userData[1], userData[2], userData[3]);
 						break;
 					case 2:
 						break;
@@ -209,8 +223,6 @@ void loginMenu()
 	} while (true);
 }
 
-
-
 int main()
 {
 
@@ -221,7 +233,7 @@ int main()
 	// Menu logged in user
 	
 	
-	//loginMenu();
+	loginMenu();
 
 	//Menu calls
 	/// Admins's menu
@@ -257,16 +269,25 @@ int main()
 
 	
 	//int treekeys[16] = { 50,76,21,4,32,64,15,52,14,100,83,2,3,70,87,80};
-	int treekeys[6] = { 10,20,30,40,50,25 };
-	AVL myTree;
+
+	/*
+	myTree.addLeaf(1,"A","activo1","no tengo la respuesta");
+	myTree.addLeaf(2, "B", "activo2", "circulo");
+	myTree.addLeaf(3, "C", "activo3", "cuadrado");
+	myTree.addLeaf(4, "E", "activo4", "infame");
+	myTree.addLeaf(5, "F", "activo5", "en busca de la fama");
+	*/
+
+	/*
+	int treekeys[6] = { 1,2,3,4,5, };
 
 	for (int i = 0; i < 6; i++)
 	{
-		myTree.addLeaf(treekeys[i]);
+		myTree.addLeaf(treekeys[i],"","","");
 	}
-
-	myTree.printPreOrder();
-
+	*/
+	//myTree.printPreOrder();
+	/*
 	int input=0;
 	cout << "\n eliminar o -1 para salir\n";
 	while (input != -1)
@@ -279,7 +300,7 @@ int main()
 			myTree.removeNode(input);
 			myTree.printPreOrder();
 		}
-	}
+	}*/
 
 	/*
 	for (int i = 0; i < 6; i++)

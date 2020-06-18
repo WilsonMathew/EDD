@@ -1,6 +1,7 @@
 #pragma once
 #include "NodoMatriz.h"
 #include <iostream>
+#include "AVL.h"
 
 using namespace std;
 
@@ -8,11 +9,14 @@ class Matriz
 {
 public:
 	NodoMatriz* head;
-
 	Matriz()
 	{
 		head = new NodoMatriz("admin","admin");
 	}
+
+	// Assets in matrix
+	void insertAsset(string name, string password, string company, string dept, string nameAsset, string descAsset);
+	//AVL* getAssets();
 
 	void insertElement(string user, string password, string company, string dept);
 	NodoMatriz* createCompany(string company);
@@ -26,7 +30,7 @@ public:
 
 	NodoMatriz* verifyCompInDept(string company, string dept);
 
-	string getUserData(string name, string pasword, string company, string dept);
+	NodoMatriz* getUserData(string name, string pasword, string company, string dept);
 
 	// Graphing stuff
 	void graph();
