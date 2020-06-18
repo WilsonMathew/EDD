@@ -10,6 +10,7 @@ private:
 	struct node
 	{
 		int key;
+		int height;
 		string alphaKey;
 		string nombre;
 		string desc;
@@ -18,8 +19,9 @@ private:
 	};
 
 	node* root;
-	void addLeafPrivate(int key, node* ptr);
+	node* addLeafPrivate(node* ptr, int key);
 	void printInOrderPrivate(node* ptr);
+	void printPreOrderPrivate(node* ptr);
 	node* returnNodePrivate(int key, node* ptr);
 
 	void removeNodePrivate(int key, node* parent);
@@ -34,12 +36,24 @@ public:
 	AVL();
 	~AVL();
 	void addLeaf(int key);
-	void printInOrder();
 	int returnRootKey();
 	void printRootKey(int key);
 	int findSmallest();
 
+	void printInOrder();
+	void printPreOrder();
+
 	// following tuts
 	void removeNode(int key);
+
+	// AVL stuff
+	int max(int a, int b);
+	int height(node* n);
+
+	node* rightRotate(node* y);
+	node* leftRotate(node* x);
+	int getBalance(node* n);
+
+	node* balanceTree(int key, node* root);
 };
 

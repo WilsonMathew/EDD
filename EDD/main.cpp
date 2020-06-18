@@ -34,11 +34,11 @@ void insertUser()
 	cin >> userData[3];
 
 	if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != "0")
-		cout << "No se adminten duplicados! intente con un nombre diferente\n";
+		cout << "$$$ No se adminten duplicados! intente con un nombre diferente $$$\n\n";
 	else
 	{
 		user->insertElement(userData[0], userData[1], userData[2], userData[3]);
-		cout << "-> Usuario ingresado! \n";
+		cout << "$$$ Usuario ingresado! $$$ \n\n";
 	}
 	
 	// test users
@@ -246,7 +246,7 @@ int main()
 	*/
 	
 	
-	loginMenu();
+	//loginMenu();
 	/*
 
 	*/
@@ -255,21 +255,29 @@ int main()
 	
 	//string treekeys[16] = { "50","76","21","4","32","64","15","52","14","100","83","2","3","70","87","80" };
 
-	/*
-	int treekeys[16] = { 50,76,21,4,32,64,15,52,14,100,83,2,3,70,87,80};
+	
+	//int treekeys[16] = { 50,76,21,4,32,64,15,52,14,100,83,2,3,70,87,80};
+	int treekeys[6] = { 10,20,30,40,50,25 };
 	AVL myTree;
 
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		myTree.addLeaf(treekeys[i]);
 	}
 
-	cout << "mostrar arbol en orden \n";
-	myTree.printInOrder();
+	myTree.printPreOrder();
+	/*
+	for (int i = 0; i < 6; i++)
+	{
+		myTree.printRootKey(treekeys[i]);
+	}
+	*/
+
+	//cout <<"el numero mayor es: " << myTree.max(10, 20) << endl;
 
 	//myTree.printRootKey(myTree.returnRootKey());
 	
-	*/
+	
 	// testing strings
 	/*
 	string one = "hello5";

@@ -13,6 +13,7 @@ AVL::node* AVL::createLeaf(int key)
 {
 	node* n = new node;
 	n->key = key;
+	n->height = 1;
 	n->left = NULL;
 	n->right = NULL;
 
@@ -21,11 +22,41 @@ AVL::node* AVL::createLeaf(int key)
 
 void AVL::addLeaf(int key)
 {
-	addLeafPrivate(key, root);
+	root = addLeafPrivate(root, key);
 }
 
-void AVL::addLeafPrivate(int key, node* ptr)
+// balanced failure
+AVL::node* AVL::balanceTree(int key, node* root)
 {
+	root->height = 1 + max(height(root->left), height(root->right));
+
+	int balance = getBalance(root);
+
+	if (balance > 1 && key < root->left->key)
+		return rightRotate(root);
+
+	if (balance < -1 && key > root->right->key)
+		return leftRotate(root);
+
+	if (balance > 1 && key > root->left->key)
+	{
+		root->left = leftRotate(root->left);
+		return rightRotate(root);
+	}
+
+	if (balance < -1 && key < root->right->key)
+	{
+		root->right = rightRotate(root->right);
+		return leftRotate(root);
+	}
+
+	return root;
+}
+
+AVL::node* AVL::addLeafPrivate(node* node, int key)
+{
+	// Addding without balance
+	/*
 	if (root == NULL)
 	{
 		root = createLeaf(key);
@@ -56,6 +87,50 @@ void AVL::addLeafPrivate(int key, node* ptr)
 	{
 		cout << "El valor ya existe en el arbol";
 	}
+	*/
+
+	// adding with balance
+	 // Agregando nodos como arbo de busqueda normal
+	if (node == NULL)
+		return(createLeaf(key));
+
+	if (key < node->key)
+		node->left = addLeafPrivate(node->left, key);
+	else if (key > node->key)
+		node->right = addLeafPrivate(node->right, key);
+	else // no se aceptan duplicados
+		return node;
+
+	node->height = 1 + max(height(node->left),
+		height(node->right));
+
+	int balance = getBalance(node); 
+
+	// In case it's inbalance then perform one of this cases
+	// Left Left Case  
+	if (balance > 1 && key < node->left->key)
+		return rightRotate(node);
+
+	// Right Right Case  
+	if (balance < -1 && key > node->right->key)
+		return leftRotate(node);
+
+	// Left Right Case  
+	if (balance > 1 && key > node->left->key)
+	{
+		node->left = leftRotate(node->left);
+		return rightRotate(node);
+	}
+
+	// Right Left Case  
+	if (balance < -1 && key < node->right->key)
+	{
+		node->right = rightRotate(node->right);
+		return leftRotate(node);
+	}
+
+	return node;
+
 }
 
 void AVL::printInOrder()
@@ -81,6 +156,21 @@ void AVL::printInOrderPrivate(node* ptr)
 	else
 	{
 		cout << "El arbol esta vacio\n";
+	}
+}
+
+void AVL::printPreOrder()
+{
+	printPreOrderPrivate(root);
+}
+
+void AVL::printPreOrderPrivate(node* ptr)
+{
+	if (ptr != NULL)
+	{
+		cout << ptr->key << " ";
+		printPreOrderPrivate(ptr->left);
+		printPreOrderPrivate(ptr->right);
 	}
 }
 
@@ -327,11 +417,64 @@ void AVL::removeSubTree(node* ptr)
 		{
 			removeSubTree(ptr->right);
 		}
-		cout << "deleting key: " << ptr->key << endl;
+		//cout << "deleting key: " << ptr->key << endl;
 		delete ptr;
 	}
 
 }
 
+
+// AVL Stuff
+int AVL::max(int a, int b)
+{
+	return (a > b) ? a : b;
+}
+
+// all heights are 1.
+int AVL::height(node* n)
+{
+	if (n == NULL)
+		return 0;
+	return n->height;
+}
+
+int AVL::getBalance(node* n)
+{
+	if (n == NULL)
+		return 0;
+	return height(n->left) - height(n->right);
+}
+
+AVL::node* AVL::rightRotate(node* y)
+{
+	node* x = y->left;
+	node* T2 = x->right;
+
+	x->right = y;
+	y->left = T2;
+
+	y->height = max(height(y->left),
+		height(y->right)) + 1;
+	x->height = max(height(x->left),
+		height(x->right)) + 1;
+
+	return x;
+}
+
+AVL::node* AVL::leftRotate(node* x)
+{
+	node* y = x->right;
+	node* T2 = y->left;
+
+	y->left = x;
+	x->right = T2;
+
+	x->height = max(height(x->left),
+		height(x->right)) + 1;
+	y->height = max(height(y->left),
+		height(y->right)) + 1;
+
+	return y;
+}
 
 
