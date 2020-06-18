@@ -266,16 +266,27 @@ int main()
 	}
 
 	myTree.printPreOrder();
+
+	int input=0;
+	cout << "\n eliminar o -1 para salir\n";
+	while (input != -1)
+	{
+		cout << "delete Node: ";
+		cin >> input;
+		if (input != -1)
+		{
+			cout << endl;
+			myTree.removeNode(input);
+			myTree.printPreOrder();
+		}
+	}
+
 	/*
 	for (int i = 0; i < 6; i++)
 	{
 		myTree.printRootKey(treekeys[i]);
 	}
 	*/
-
-	//cout <<"el numero mayor es: " << myTree.max(10, 20) << endl;
-
-	//myTree.printRootKey(myTree.returnRootKey());
 	
 	
 	// testing strings
