@@ -33,8 +33,14 @@ void insertUser()
 	cout << "-> Ingresar Empresa: ";
 	cin >> userData[3];
 
-	user->insertElement(userData[0], userData[1], userData[2], userData[3]);
-	cout << "-> Usuario ingresado! \n";
+	if (user->getUserData(userData[0], userData[1], userData[2], userData[3]) != "0")
+		cout << "No se adminten duplicados! intente con un nombre diferente\n";
+	else
+	{
+		user->insertElement(userData[0], userData[1], userData[2], userData[3]);
+		cout << "-> Usuario ingresado! \n";
+	}
+	
 	// test users
 
 	/*
@@ -127,7 +133,7 @@ void loginMenu()
 
 			do
 			{
-				system("CLS");
+				//system("CLS");
 				opt = menu(menuAdmin, arrayLen(menuAdmin));
 				switch (opt)
 				{
@@ -207,8 +213,8 @@ void loginMenu()
 
 int main()
 {
-	
-	user->graph();
+
+	///user->graph();
 	// EDD Vars
 	
 	

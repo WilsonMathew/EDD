@@ -318,20 +318,38 @@ void Matriz::graph()
 	file = fopen("grafo.dot", "w+");
 
 	fprintf(file, "digraph G { \n");
-	//getDot(file, head);
-	fprintf(file, "A -> B {label=\"10\"};");
-	fprintf(file, "B -> B {label=\"20\"};");
+	getDot(file, head->down);
 	fprintf(file, "}");
 
 	fclose(file);
 
 	system("dot -Tpng grafo.dot -o Matriz.png");
-	system(".\Matriz.png");
+	system(".\\Matriz.png");
 
 
 }
 
-void getDot(FILE* file, NodoMatriz* head)
+void Matriz::getDot(FILE* file, NodoMatriz* n)
 {
+	NodoMatriz* aux = n;
+	fprintf(file, "rankdir=LR \n");
 
+	do
+	{
+		// nodo
+		string label = aux->name + "[shape=box,label=\"" + aux->name + "\"]; \n";
+		const char* clabel = label.c_str();
+		fprintf(file, clabel);
+		// enlaces
+		string link;
+		if(aux->next != nullptr)
+			link = aux->name + "->" + aux->next->name +"\n";
+		if(aux->prev != nullptr)
+			link = link + aux->name + "->" + aux->prev->name + "\n";
+	
+		const char* cLink = link.c_str();
+		fprintf(file, cLink);
+		
+		aux = aux->next;
+	} while (aux != nullptr);
 }

@@ -30,5 +30,5 @@ public:
 
 	// Graphing stuff
 	void graph();
-	void getDot(FILE* file, NodoMatriz* head );
+	void getDot(FILE* file, NodoMatriz* n );
 };
